@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>よくあるご質問 - Maple English School</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Hiragino Kaku Gothic Pro', 'Yu Gothic', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .search-box {
+            padding: 30px;
+            background: #f8f9fa;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 16px;
+            border: 2px solid #dee2e6;
+            border-radius: 25px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 20px 30px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .category-btn {
+            padding: 8px 20px;
+            background: white;
+            border: 2px solid #dee2e6;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .category-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .category-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .faq-container {
+            padding: 30px;
+        }
+
+        .faq-category {
+            margin-bottom: 30px;
+        }
+
+        .category-title {
+            font-size: 1.4em;
+            color: #667eea;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: #f8f9fa;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 24px;
+            color: #667eea;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: #f8f9fa;
+        }
+
+        .faq-answer-content {
+            padding: 20px;
+            color: #555;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            .categories {
+                padding: 15px;
+            }
+
+            .faq-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>よくあるご質問（FAQ）</h1>
+            <p>Maple English School</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" class="search-input" id="searchInput" placeholder="質問を検索...">
+        </div>
+
+        <div class="categories">
+            <button class="category-btn active" data-category="all">すべて</button>
+            <button class="category-btn" data-category="login">ログイン・アカウント</button>
+            <button class="category-btn" data-category="system">システム・サイト</button>
+            <button class="category-btn" data-category="lesson">レッスン・動画</button>
+            <button class="category-btn" data-category="contact">連絡・手続き</button>
+        </div>
+
+        <div class="faq-container" id="faqContainer">
+            <!-- ログイン・アカウント -->
+            <div class="faq-category" data-category="login">
+                <h2 class="category-title">ログイン・アカウント</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        ログイン方法がわかりません
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            トップページ右上の「ログイン」ボタンをクリックし、登録時にお送りしたメールアドレスとパスワードを入力してください。初回ログイン時は、パスワードの変更をお願いしています。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        パスワードを忘れてしまいました
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            ログイン画面の「パスワードをお忘れですか？」をクリックし、登録メールアドレスを入力してください。パスワードリセット用のリンクをお送りします。メールが届かない場合は、迷惑メールフォルダもご確認ください。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        メールアドレスを変更したい
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            マイページの「アカウント設定」からメールアドレスの変更が可能です。変更後、新しいメールアドレスに確認メールが送信されますので、記載されているリンクをクリックして変更を完了してください。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- システム・サイト -->
+            <div class="faq-category" data-category="system">
+                <h2 class="category-title">システム・サイト</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Moodleの使い方を教えてください
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Moodleにログイン後、「コース一覧」から受講中のコースを選択してください。各コースには教材、課題、フォーラムなどが用意されています。初めての方向けのガイド動画もご用意していますので、ご参照ください。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Maple Dollarsの残高を確認したい
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            マイページにログイン後、ダッシュボードの右上に現在のMaple Dollars残高が表示されています。「Maple Dollars履歴」ページでは、獲得・使用の詳細履歴もご確認いただけます。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        サイトが正しく表示されません
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            ブラウザのキャッシュをクリアしてみてください。それでも解決しない場合は、最新版のブラウザ（Chrome、Safari、Edgeなど）をご利用ください。スマートフォンの場合は、アプリを再起動してみてください。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- レッスン・動画 -->
+            <div class="faq-category" data-category="lesson">
+                <h2 class="category-title">レッスン・動画</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        動画が再生できません
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            インターネット接続を確認してください。Wi-Fi環境での視聴を推奨しています。それでも再生できない場合は、ブラウザを変更するか、アプリを最新版に更新してください。問題が継続する場合はお問い合わせください。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        Zoomレッスンに参加できません
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            レッスン開始5分前から入室可能です。マイページの「今週のレッスン」に表示されているZoomリンクをクリックしてください。初めての方は事前にZoomアプリのインストールをお願いします。接続テストもご利用いただけます。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        課題の提出方法がわかりません
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            Moodleの該当コースページ内「課題」セクションから提出できます。ファイルをアップロードするか、テキストボックスに直接入力してください。提出期限は各課題に表示されています。提出後は確認メールが届きます。
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 連絡・手続き -->
+            <div class="faq-category" data-category="contact">
+                <h2 class="category-title">連絡・手続き</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        欠席の連絡方法を教えてください
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            マイページの「欠席・振替申請」フォームからお手続きください。レッスン開始の2時間前までにご連絡いただければ、振替レッスンをご利用いただけます。緊急の場合は教室に直接お電話ください。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        イベントの申込方法は？
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            マイページの「イベント情報」から参加希望のイベントを選び、「申込」ボタンをクリックしてください。定員制のイベントは先着順となります。申込完了後、確認メールが届きます。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        問い合わせ先を教えてください
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            サイト内の「お問い合わせ」フォームをご利用いただくか、info@maple-english.comまでメールでご連絡ください。お電話でのお問い合わせは平日10:00-18:00に受け付けております。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="no-results" id="noResults">
+            該当する質問が見つかりませんでした。<br>
+            別のキーワードでお試しいただくか、お問い合わせフォームからご連絡ください。
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Maple English School. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // FAQ アコーディオン機能
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // すべてのアイテムを閉じる
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    otherItem.classList.remove('active');
+                });
+                
+                // クリックされたアイテムをトグル
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // カテゴリーフィルター
+        document.querySelectorAll('.category-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const category = btn.dataset.category;
+                
+                // ボタンのアクティブ状態を更新
+                document.querySelectorAll('.category-btn').forEach(b => {
+                    b.classList.remove('active');
+                });
+                btn.classList.add('active');
+                
+                // カテゴリーの表示/非表示
+                document.querySelectorAll('.faq-category').forEach(cat => {
+                    if (category === 'all' || cat.dataset.category === category) {
+                        cat.style.display = 'block';
+                    } else {
+                        cat.style.display = 'none';
+                    }
+                });
+                
+                // 検索をクリア
+                document.getElementById('searchInput').value = '';
+                document.getElementById('noResults').style.display = 'none';
+            });
+        });
+
+        // 検索機能
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            let hasResults = false;
+            
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer-content').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            // カテゴリータイトルの表示制御
+            document.querySelectorAll('.faq-category').forEach(category => {
+                const visibleItems = category.querySelectorAll('.faq-item[style="display: block;"]');
+                if (searchTerm && visibleItems.length === 0) {
+                    category.style.display = 'none';
+                } else {
+                    category.style.display = 'block';
+                }
+            });
+            
+            // 結果なしメッセージ
+            document.getElementById('noResults').style.display = 
+                searchTerm && !hasResults ? 'block' : 'none';
+            
+            // 検索時はカテゴリーフィルターを解除
+            if (searchTerm) {
+                document.querySelectorAll('.category-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
