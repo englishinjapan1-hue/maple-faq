@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>よくあるご質問 - Maple English School</title>
+    <title>Maple English School | よくあるご質問</title>
     <style>
         * {
             margin: 0;
@@ -12,459 +12,1163 @@
         }
 
         body {
-            font-family: 'Segoe UI', 'Hiragino Kaku Gothic Pro', 'Yu Gothic', sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
             min-height: 100vh;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
         }
 
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             color: white;
-            padding: 40px 30px;
-            text-align: center;
+            padding: 2.5rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        header h1 {
-            font-size: 2em;
-            margin-bottom: 10px;
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        header p {
-            font-size: 1.1em;
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .subtitle {
+            font-size: 0.95rem;
             opacity: 0.9;
         }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .search-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
         .search-box {
-            padding: 30px;
-            background: #f8f9fa;
-            border-bottom: 2px solid #e9ecef;
+            position: relative;
+            max-width: 600px;
         }
 
-        .search-input {
+        .search-box input {
             width: 100%;
-            padding: 15px 20px;
-            font-size: 16px;
-            border: 2px solid #dee2e6;
-            border-radius: 25px;
+            padding: 1rem 1.5rem 1rem 3rem;
+            font-size: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+
+        .search-box input:focus {
             outline: none;
-            transition: all 0.3s;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
         }
 
-        .search-input:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        .search-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            font-size: 1.2rem;
         }
 
-        .categories {
+        .category-nav {
             display: flex;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
             flex-wrap: wrap;
-            gap: 10px;
-            padding: 20px 30px;
-            background: #f8f9fa;
-            border-bottom: 1px solid #dee2e6;
         }
 
         .category-btn {
-            padding: 8px 20px;
+            padding: 0.6rem 1.2rem;
+            border: 2px solid #ddd;
             background: white;
-            border: 2px solid #dee2e6;
-            border-radius: 20px;
+            border-radius: 24px;
             cursor: pointer;
+            font-size: 0.9rem;
             transition: all 0.3s;
-            font-size: 14px;
             font-weight: 500;
         }
 
-        .category-btn:hover {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-        }
-
+        .category-btn:hover,
         .category-btn.active {
-            background: #667eea;
+            background: #3498db;
             color: white;
-            border-color: #667eea;
+            border-color: #3498db;
         }
 
-        .faq-container {
-            padding: 30px;
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
         }
 
-        .faq-category {
-            margin-bottom: 30px;
+        .faq-section {
+            display: none;
         }
 
-        .category-title {
-            font-size: 1.4em;
-            color: #667eea;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #667eea;
+        .faq-section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #3498db;
         }
 
         .faq-item {
-            margin-bottom: 15px;
-            border: 1px solid #e9ecef;
-            border-radius: 10px;
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 8px;
             overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
             transition: all 0.3s;
         }
 
         .faq-item:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
         }
 
         .faq-question {
-            padding: 20px;
-            background: white;
+            padding: 1.5rem;
+            background: #f8f9fa;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 500;
+            font-weight: 600;
+            color: #2c3e50;
             transition: background 0.3s;
+            user-select: none;
         }
 
         .faq-question:hover {
-            background: #f8f9fa;
+            background: #e8f4f8;
         }
 
-        .faq-question::after {
-            content: '+';
-            font-size: 24px;
-            color: #667eea;
+        .faq-question.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .toggle-icon {
+            font-size: 1.2rem;
             transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: 1rem;
         }
 
-        .faq-item.active .faq-question::after {
-            transform: rotate(45deg);
+        .faq-question.active .toggle-icon {
+            transform: rotate(180deg);
         }
 
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            background: #f8f9fa;
+            transition: max-height 0.3s ease;
+            background: white;
         }
 
-        .faq-answer-content {
-            padding: 20px;
+        .faq-answer.active {
+            max-height: 1000px;
+        }
+
+        .answer-content {
+            padding: 1.5rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .answer-content p {
+            margin-bottom: 0.8rem;
+        }
+
+        .answer-content ul {
+            margin: 1rem 0 1rem 2rem;
+            padding: 0;
+        }
+
+        .answer-content li {
+            margin-bottom: 0.6rem;
             color: #555;
         }
 
-        .faq-item.active .faq-answer {
-            max-height: 500px;
+        .answer-content strong {
+            color: #2c3e50;
+        }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .info {
+            background: #e7f3ff;
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        .link-button {
+            display: inline-block;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .link-button:hover {
+            color: #2980b9;
+            text-decoration: underline;
         }
 
         .no-results {
             text-align: center;
-            padding: 40px;
-            color: #6c757d;
-            display: none;
+            padding: 2rem;
+            color: #999;
+            font-size: 1.1rem;
         }
 
         footer {
+            background: #2c3e50;
+            color: white;
             text-align: center;
-            padding: 20px;
-            background: #f8f9fa;
-            color: #6c757d;
-            font-size: 14px;
+            padding: 2rem;
+            margin-top: 3rem;
         }
 
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.5em;
+            .container {
+                padding: 1rem;
             }
 
-            .categories {
-                padding: 15px;
+            .header-content {
+                padding: 0 1rem;
             }
 
-            .faq-container {
-                padding: 20px;
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            .section-title {
+                font-size: 1.4rem;
+            }
+
+            .faq-question {
+                padding: 1rem;
+                font-size: 0.95rem;
+            }
+
+            .category-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.85rem;
             }
         }
     </style>
 </head>
 <body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🌍</div>
+                <span>Maple English School</span>
+            </div>
+            <div class="subtitle">よくあるご質問 - 安心して学習いただくためのサポート</div>
+        </div>
+    </header>
+
     <div class="container">
-        <header>
-            <h1>よくあるご質問（FAQ）</h1>
-            <p>Maple English School</p>
-        </header>
-
-        <div class="search-box">
-            <input type="text" class="search-input" id="searchInput" placeholder="質問を検索...">
+        <div class="search-section">
+            <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="質問を検索してください...例：宿題、Moodle、休会">
+            </div>
+            <div class="category-nav">
+                <button class="category-btn active" data-category="all">すべて</button>
+                <button class="category-btn" data-category="enrollment">新年度・入会</button>
+                <button class="category-btn" data-category="lessons">レッスン・振替</button>
+                <button class="category-btn" data-category="moodle">Moodle・宿題</button>
+                <button class="category-btn" data-category="eiken">英検</button>
+                <button class="category-btn" data-category="materials">教材・持ち物</button>
+                <button class="category-btn" data-category="other">その他</button>
+            </div>
         </div>
 
-        <div class="categories">
-            <button class="category-btn active" data-category="all">すべて</button>
-            <button class="category-btn" data-category="login">Moole学習サイト</button>
-            <button class="category-btn" data-category="system">メンバーズ・サイト</button>
-            <button class="category-btn" data-category="lesson">レッスン・宿題</button>
-            <button class="category-btn" data-category="contact">ご相談</button>
-            <button class="category-btn" data-category="contact">連絡・各種手続き</button>
-        </div>
-
-        <div class="faq-container" id="faqContainer">
-            <!-- ログイン・アカウント -->
-            <div class="faq-category" data-category="login">
-                <h2 class="category-title">ログイン・アカウント</h2>
+        <div class="main-content">
+            <!-- 新年度・入会 -->
+            <div class="faq-section active" data-category="enrollment">
+                <h2 class="section-title">📅 新年度・入会について</h2>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        ログイン方法がわかりません
+                        <span>新年度登録はいつからですか？</span>
+                        <span class="toggle-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            トップページ右上の「ログイン」ボタンをクリックし、登録時にお送りしたメールアドレスとパスワードを入力してください。初回ログイン時は、パスワードの変更をお願いしています。
+                        <div class="answer-content">
+                            <p><strong>2月スタートです。</strong></p>
+                            <p>1月中旬までに、新年度の時間割とカレンダーを発表し、その前後に受講対象クラスを個別にご案内しています。</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question">
-                        パスワードを忘れてしまいました
+                        <span>新年度の時間割はいつ出ますか？</span>
+                        <span class="toggle-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            ログイン画面の「パスワードをお忘れですか？」をクリックし、登録メールアドレスを入力してください。パスワードリセット用のリンクをお送りします。メールが届かない場合は、迷惑メールフォルダもご確認ください。
+                        <div class="answer-content">
+                            <p><strong>例年1月中旬までに発表しています。</strong></p>
+                            <p>新年度の時間割とカレンダーを発表します。詳細は、お手元の「メイプル・カレンダー」ファイルをご参照ください。</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question">
-                        メールアドレスを変更したい
+                        <span>新年度カレンダーはいつ決まりますか？</span>
+                        <span class="toggle-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            マイページの「アカウント設定」からメールアドレスの変更が可能です。変更後、新しいメールアドレスに確認メールが送信されますので、記載されているリンクをクリックして変更を完了してください。
+                        <div class="answer-content">
+                            <p><strong>例年1月中旬までに発表しています。</strong></p>
+                            <p>新年度の時間割とカレンダーを発表します。詳細は、お手元の「メイプル・カレンダー」ファイルをご参照ください。</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Moole学習サイト -->
-            <div class="faq-category" data-category="system">
-                <h2 class="category-title">Moole学習サイト</h2>
+            <!-- レッスン・振替 -->
+            <div class="faq-section" data-category="lessons">
+                <h2 class="section-title">🎓 レッスン・振替について</h2>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        Moodleの使い方を教えてください
+                        <span>振替レッスンはできますか？</span>
+                        <span class="toggle-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Moodleにログイン後、「コース一覧」から受講中のコースを選択してください。各コースには教材、課題、フォーラムなどが用意されています。初めての方向けのガイド動画もご用意していますので、ご参照ください。
+                        <div class="answer-content">
+                            <p><strong>クラスによって異なります：</strong></p>
+                            <ul>
+                                <li><strong>振替可能：</strong>文法クラス、パーソナルサポートクラス、プライベートレッスン</li>
+                                <li><strong>振替不可：</strong>その他のクラス</li>
+                            </ul>
+                            <p>振替不可のクラスの場合でも、学習機会を減らさないように配慮しています：</p>
+                            <ul>
+                                <li>Moodleでレッスン内容を確認</li>
+                                <li>質問や確認したいことがある場合は、10分間の「個別Q&Aタイム」をご利用いただけます</li>
+                            </ul>
+                            <div class="info">
+                                <strong>理由：</strong>振替生が入ることで、既存の学習環境が変わり、全員にとって大きな負担になるためです。特に小さなお子さんや思春期のお子さんは、いつもと違うメンバーや先生、雰囲気の中での自己表現に大きな抵抗を感じます。
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question">
-                        Maple Dollarsの使い方を教えてください。
+                        <span>祝日はレッスンありますか？</span>
+                        <span class="toggle-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            メイプルドルは、メイプルオリジナルグッズ、プレイベートレッスン、イベント参加権と交換することができます。アイテムにより、必要なドルが変わってきますので、詳細はこちらをご覧ください。
+                        <div class="answer-content">
+                            <p><strong>祝日にもレッスンがある場合が多いです。</strong></p>
+                            <p>詳しいレッスン開講日は以下でご確認ください：</p>
+                            <ul>
+                                <li>年度初めまたはご入会時にお渡しする「メイプル・カレンダー」</li>
+                                <li>公式LINE</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question">
-                        サイトが正しく表示されません
+                        <span>レッスン時間は1時間なのに、1時間分の振替ができないのですか？</span>
+                        <span class="toggle-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            ブラウザのキャッシュをクリアしてみてください。それでも解決しない場合は、最新版のブラウザ（Chrome、Safari、Edgeなど）をご利用ください。スマートフォンの場合は、アプリを再起動してみてください。
+                        <div class="answer-content">
+                            <p>グループレッスンの振替はお受けできません。</p>
+                            <div class="note">
+                                <strong>理由：</strong>振替を権利としてお渡しすることで、いくつかの課題が生じます：
+                            </div>
+                            <ul>
+                                <li>振替生が入ることで、クラスの環境が一気に変わり、既存生・振替生・講師・管理スタッフ、全員にとって大きな負担に</li>
+                                <li>特に経験が少ない小さなお子さんや思春期のお子さんは、いつもと違うメンバー・先生・雰囲気の中での自己表現に大きな抵抗を感じる</li>
+                                <li>振替が「当然」という認識になり、通常クラス参加の優先順位が下がり、継続が難しくなる</li>
+                            </ul>
+                            <p style="margin-top: 1rem;"><strong>代わりの学習方法：</strong></p>
+                            <ul>
+                                <li>Moodleでレッスン動画の視聴</li>
+                                <li>宿題の確認とアクティビティに挑戦</li>
+                                <li>疑問点がある場合や、テスト週に先生から評価を受けたい場合は、「個別Q&Aタイム」（10分間）でサポート</li>
+                            </ul>
+                            <div class="info">
+                                関係者みんなにとって、学びやすく、教えやすく、維持しやすい、持続可能な学習環境を作ることを大切にしています。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>1か月間のみ休会したいです</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>お申し出の期限：</strong>休会希望月の前月8日までに、公式LINEまたはメールでお申し出ください。（それ以降は翌月度以降の適用となります。休日の場合は前営業日まで）</p>
+                            <div class="note">
+                                <strong>重要なご注意：</strong>
+                            </div>
+                            <ul>
+                                <li>復帰時には事務手数料が発生します</li>
+                                <li>休会月はMoodleが利用不可、イベント参加および申込不可</li>
+                                <li>復帰時の席確保ができないため、在籍していたクラスに復帰できない可能性があります</li>
+                                <li>レベル4までのクラスは、復帰時にパーソナルサポートクラス（2ヶ月～）で、休会期間中に受けられなかったレッスンの補習を実施します</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- レッスン・宿題 -->
-            <div class="faq-category" data-category="lesson">
-                <h2 class="category-title">レッスン・宿題</h2>
+            <!-- 宿題について -->
+            <div class="faq-section" data-category="moodle">
+                <h2 class="section-title">📝 宿題について</h2>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        レッスンを欠席したので、今週の宿題がわかりません。
+                        <span>宿題がわかりません</span>
+                        <span class="toggle-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Moodleにログイン後、受講中のクラスに行き、欠席した週のアクティビティを確認してください。どのUnitとWeekかは、メイプルカレンダーに記載してありますので、ご確認ください。
+                        <div class="answer-content">
+                            <p><strong>Moodleでの確認方法：</strong></p>
+                            <ol style="margin: 1rem 0 1rem 2rem;">
+                                <li>Moodleにログイン</li>
+                                <li>ご自分のコースを選択</li>
+                                <li>対象の「Unit〇〇 Lesson〇」をクリック</li>
+                                <li>そこに表示されている、動画・クイズ・ワークシートが週の宿題です</li>
+                            </ol>
+                            <div class="info">
+                                <strong>予習・復習にもご活用いただけます。</strong>週ごとのUnitとLessonは、メイプル・カレンダーでご確認ください。
+                            </div>
+                            <p style="margin-top: 1rem;"><strong>注意：</strong>パーソナルサポートクラス、文法クラス、プライベートレッスンはMoodleに掲載されず、各自で管理いただきます。</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question">
-                        Zoomレッスンに参加できません
+                        <span>BKS2クラスの宿題を教えてください</span>
+                        <span class="toggle-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            レッスン開始5分前から入室可能です。マイページの「今週のレッスン」に表示されているZoomリンクをクリックしてください。初めての方は事前にZoomアプリのインストールをお願いします。接続テストもご利用いただけます。
+                        <div class="answer-content">
+                            <p><strong>Moodleでの確認方法：</strong></p>
+                            <ol style="margin: 1rem 0 1rem 2rem;">
+                                <li>Moodleにログイン</li>
+                                <li>対象の「Unit〇〇 Lesson〇」をクリック</li>
+                                <li>そこに記載されているものすべてが宿題です</li>
+                            </ol>
+                            <p><strong>カレンダーでも確認可能：</strong></p>
+                            <p>クラスの中で、宿題内容についてカレンダーファイルにメモしているので、そこでも確認いただけます。</p>
+                            <div class="info">
+                                <strong>ご注意：</strong>BK2からネイティブ1時間クラスとなり、日本人スタッフとの関わりが減るため、ご不安に感じる保護者が多くいらっしゃいます。ご不明な点はお気軽にお問い合わせください。
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question">
-                        課題の提出方法がわかりません
+                        <span>SL2の学習管理サイトMoodleの宿題について</span>
+                        <span class="toggle-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            Moodleの該当コースページ内「課題」セクションから提出できます。ファイルをアップロードするか、テキストボックスに直接入力してください。提出期限は各課題に表示されています。提出後は確認メールが届きます。
+                        <div class="answer-content">
+                            <p><strong>SL2から、Moodle上で以下を出題しています：</strong></p>
+                            <ul>
+                                <li>フラッシュカード（その月に子どもがクラスで発表するプレゼンテーションの課題）</li>
+                                <li>クイズ（ネイティブクラスの復習）</li>
+                                <li>ペンマンシップの宿題（個別でノート/ワークシートで配布）</li>
+                            </ul>
+                            <p style="margin-top: 1rem;"><strong>これらはレッスン参加のために必須の学習内容です。</strong></p>
+                            <p style="margin-top: 1rem;"><strong>オンライン学習を導入する理由：</strong></p>
+                            <ul>
+                                <li>①レッスン以外で英語を学習することを習慣づける</li>
+                                <li>②子どもたちが将来必須となるオンライン操作に、保護者サポートの元から慣れていただく</li>
+                                <li>③「オンライン＝自分の知識を広げるツール」という意識を養う</li>
+                            </ul>
+                            <div class="info">
+                                子どもたちの今後の大きな成長のために、ご理解とご協力をよろしくお願いします。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Pre3クラスのRaz-Kidsの利用方法を教えてください</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>ログイン方法：</strong></p>
+                            <ul>
+                                <li>教科書についているQRコードから</li>
+                                <li>または学習サイトMoodleから</li>
+                            </ul>
+                            <p style="margin-top: 1rem;"><strong>使い方動画：</strong></p>
+                            <p><a href="https://youtu.be/Tui75NaOpjc" class="link-button" target="_blank">Raz-Kids使い方動画はこちら</a></p>
+                            <p style="margin-top: 1rem;"><strong>Pre3の宿題内容：</strong></p>
+                            <ul>
+                                <li>ワークシート</li>
+                                <li>Moodle上のクイズ</li>
+                                <li>Raz-Kids</li>
+                            </ul>
+                            <div class="note">
+                                <strong>重要：</strong>Raz-Kidsは大切な宿題の一部です。やり忘れてできなくなると、やる気を失ったり成長が止まってしまうため、必ず実施してください。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>音読練習の仕方を教えてください</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>音読練習には2つの方法があります。BKS2とBKS3では動画を分けています：</strong></p>
+                            <p style="margin-top: 1rem;"><strong>①リピート音読動画</strong></p>
+                            <p>先生が読んだ後の空白時間に、生徒が本を見ながら読むことを想定しています。</p>
+                            <p style="margin-top: 1rem;"><strong>②オーバーラッピング音読動画</strong></p>
+                            <p>先生と同じ速度で、先生が読むのとまったく同じように読みましょう、という読み方です。</p>
+                            <p style="margin-top: 1rem;"><strong>速度を調整したい場合：</strong></p>
+                            <p>Moodleにある動画URLから直接YouTubeに行き、設定（歯車アイコン）から速度調整ができます。<strong>0.75倍速がおすすめです。</strong></p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- 連絡・各種手続き -->
-            <div class="faq-category" data-category="contact">
-                <h2 class="category-title">連絡・各種手続き</h2>
+            <!-- Moodle・技術サポート -->
+            <div class="faq-section" data-category="moodle">
+                <h2 class="section-title">💻 Moodleの使い方・技術サポート</h2>
                 
                 <div class="faq-item">
                     <div class="faq-question">
-                        欠席の連絡方法を教えてください
+                        <span>Moodleでパズルやクイズが動作しない、音声が聞けない</span>
+                        <span class="toggle-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            メンバーズサイトにログインし、時間割から該当するレッスンページに行き、「キャンセル」を押します。レッスン開始の１時間前までにご連絡いただければ、文法クラス、パーソナルサポートクラス、プライベートレッスンは、振替の対象になります（振替ルールは各クラス異なりますので、ご注意ください。）その他のクラスは、個別Q＆Aレッスンチケット(１０分間)が発行されます。お電話での欠席連絡は承っておりません。予めご了承ください。
+                        <div class="answer-content">
+                            <p><strong>推奨ブラウザ：Google Chrome または Firefox</strong></p>
+                            <div class="note">
+                                Internet Explorerをご利用の方は多数不具合が報告されています。
+                            </div>
+                            <p><strong>解決方法：</strong></p>
+                            <ul>
+                                <li>ブラウザを Chrome または Firefox に変更する</li>
+                                <li>または、スマホ・タブレットのアプリからご利用ください</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question">
-                        イベントの申込方法は？
+                        <span>ドラッグアンドドロップのクイズが動作しない</span>
+                        <span class="toggle-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            マイページの「イベント情報」から参加希望のイベントを選び、「申込」ボタンをクリックしてください。定員制のイベントは先着順となります。申込完了後、確認メールが届きます。
+                        <div class="answer-content">
+                            <p><strong>スマホやタブレットを使用している方：</strong></p>
+                            <p>「クリック&クリック」で空欄箇所に当てはめることができます。お試しください。</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="faq-item">
                     <div class="faq-question">
-                        問い合わせ先を教えてください
+                        <span>パスワードが何度入れても「不正なアクセス」となります</span>
+                        <span class="toggle-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            サイト内の「お問い合わせ」フォームをご利用いただくか、公式Lineにてご連絡ください。お電話でのお問い合わせは、留守番電話にメッセージと連絡先を残していただけますと、折り返しお電話します。
+                        <div class="answer-content">
+                            <p>パスワードは各生徒さまの個人管理となります。</p>
+                            <p><strong>解決方法：</strong></p>
+                            <p>ログイン画面の「ユーザ名・パスワードを忘れた方はこちら」からパスワードの再設定をお願いします。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>タブレット・スマホで宿題提出ができません</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>ブラウザ版Moodleについて：</strong></p>
+                            <p>Moodleは基本的にパソコン用です。「ドラッグ&ドロップ」もしくは「ファイル選択」での提出となります。</p>
+                            <p><strong>スマホ・タブレットでの提出方法：</strong></p>
+                            <p>写真アルバムから直接宿題データをアップロードする場合は、<strong>Moodle専用アプリをご利用ください。</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>PCでMoodleのログイン箇所が見つかりません</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>アクセス方法：</strong></p>
+                            <ul>
+                                <li>Mapleホームページから、メイプル専用Moodleサイトへアクセス</li>
+                                <li>公式LINEからアクセス</li>
+                            </ul>
+                            <p><strong>ログインボタンの位置：</strong>画面右上に「Login」ボタンがあります。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Moodleの評価が確認できません</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>確認方法：</strong></p>
+                            <p>画面左上の「My File」から確認いただけます。</p>
+                            <div class="note">
+                                <strong>スマホの場合：</strong>機種によっては画面が表示されないことがあります。Google Drive（無料アプリ）をダウンロードしてご利用ください。
+                            </div>
+                            <p>詳しい使い方は、Moodle上の動画ガイドをご確認ください：<a href="https://www.youtube.com/watch?v=_IYAee5XFJg" class="link-button" target="_blank">評価確認方法の動画はこちら</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 個別Q&Aタイム -->
+            <div class="faq-section" data-category="lessons">
+                <h2 class="section-title">❓ 個別Q&Aタイムについて</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>個別Q&Aチケットはどうすれば発行されますか？</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>発行条件：</strong>受講レッスン開始1時間前までに、出席管理メンバーズサイトでキャンセルした場合のみ発行されます。</p>
+                            <div class="note">
+                                それ以降のキャンセルは「消化済み」扱いとなりますので、ご注意ください。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>個別Q&Aチケットの有効期限はいつまでですか？</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>有効期限：次回ネイティブクラスまでに、お使いください。</strong></p>
+                            <div class="note">
+                                システムの仕様上、チケットは3週間の期限で付与されますが、実際の有効期限は「次回レッスンまで」です。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>個別Q&Aチケットは、どのクラスにも発行されますか？</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>対象外のクラス：</strong></p>
+                            <ul>
+                                <li>プライベートレッスン</li>
+                                <li>パーソナルサポート</li>
+                                <li>文法クラス</li>
+                            </ul>
+                            <p style="margin-top: 1rem;"><strong>それ以外のすべてのクラスが対象です。</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>個別Q&Aタイムでは、どんなことをしますか？</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>ご利用いただけます：</strong></p>
+                            <ul>
+                                <li>ご質問</li>
+                                <li>会話文の練習</li>
+                                <li>音読練習</li>
+                                <li>バッジプレゼンテーション（発表）</li>
+                            </ul>
+                            <div class="note">
+                                講師側では教材の用意はいたしませんので、必要な教材はご持参ください。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>個別Q&Aタイムの予約方法を教えてください</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>予約方法：</strong>出席管理メンバーズサイトからご予約いただけます。</p>
+                            <p><strong>予約可能期間：</strong>欠席されたレッスンから、次回のレッスンまでの期間中のみ予約可能です。</p>
+                            <p style="margin-top: 1rem;"><strong>実施方法：</strong></p>
+                            <ul>
+                                <li>対面：所属教室にて実施</li>
+                                <li>オンライン受講の方：ZOOM</li>
+                            </ul>
+                            <p style="margin-top: 1rem;"><strong>時間：</strong>1回10分</p>
+                            <p><strong>同伴について：</strong>小学6年生以下の方は、必ず保護者同伴でお越しください。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>個別Q&Aタイムの先生は選べますか？</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p>申し訳ございませんが、先生の選択はできません。</p>
+                            <p>曜日によってQ&Aタイム担当が決まっているため、ご了承ください。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>個別Q&Aタイム受講までに何を準備したらよいですか？</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>準備：</strong>必要な教材はご持参ください。（Moodleにアクセスして、宿題内容や動画をご確認の上、ご質問内容を整理してお越しください）</p>
+                            <p style="margin-top: 1rem;"><strong>アップロード方法について：</strong></p>
+                            <p>宿題提出の場合、ブラウザ上のMoodleは基本的にパソコン用です。スマホ・タブレットから直接アップロードする場合は、Moodle専用アプリをご利用ください。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 英検 -->
+            <div class="faq-section" data-category="eiken">
+                <h2 class="section-title">🏆 英検について</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>英検準会場はいつ申込できますか？</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>申込期間：</strong>英検実施日のおよそ1ヶ月前までの4週間</p>
+                            <p>詳しい申込期限は、メイプルカレンダー右下に記載がありますので、ご確認ください。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>英検、何級に受験できますか？</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>メイプルは英検協会の準会場です。</strong></p>
+                            <p><strong>当校で受験できる級：</strong></p>
+                            <ul>
+                                <li>一次試験：5級～2級</li>
+                            </ul>
+                            <p><strong>本会場のみの試験：</strong></p>
+                            <ul>
+                                <li>準1級・1級の一次試験</li>
+                                <li>すべての級の二次面接試験</li>
+                            </ul>
+                            <div class="note">
+                                二次面接試験は本会場でのみ行われますので、受験日をご確認ください。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>英検、何級に挑戦できそうでしょうか</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>実力測定の方法：</strong></p>
+                            <p>英検公式サイトにて、実際の過去問をダウンロードし、設定時間内に解答してみてください。</p>
+                            <p><strong>合格の目安：</strong>ライティングの問題を除いた部分で、<strong>8割以上のスコア</strong>が取れていれば、当日の緊張などを加味しても、恐らく一次試験には合格できるでしょう。</p>
+                            <p style="margin-top: 1.5rem;"><strong>メイプルのクラスレベル別の受験目安：</strong></p>
+                            <ul>
+                                <li>レベル4～ ＝ 5級、または英検ジュニア・ゴールド</li>
+                                <li>レベル5 ＝ 4級</li>
+                                <li>レベル6 ＝ 3級</li>
+                                <li>レベル7 ＝ 準2級</li>
+                                <li>レベル8 ＝ 2級</li>
+                                <li>レベル9・10 ＝ 準1級 / TOEIC700</li>
+                                <li>レベル11 ＝ 1級 / TOEIC900</li>
+                            </ul>
+                            <p style="margin-top: 1.5rem;"><strong>文法クラス受講生の合格目安：</strong></p>
+                            <ul>
+                                <li>中1教科書終了 ＝ 4級合格レベル</li>
+                                <li>中2教科書終了 ＝ 3級合格レベル</li>
+                                <li>中3教科書終了 ＝ 準2級合格レベル</li>
+                                <li>高1教科書終了 ＝ 2級合格レベル</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 教材・持ち物 -->
+            <div class="faq-section" data-category="materials">
+                <h2 class="section-title">📚 教材・持ち物について</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>新年度クラスの持ち物を教えてください</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>【全クラス対象】</strong></p>
+                            <p>新しいスティッカーファイルに、前年度に使用していたスティッカーシートを付け替えて引き続きご使用いただけます。</p>
+                            <div class="info">
+                                ぜひ継続して集めてくださいね！
+                            </div>
+                            <p style="margin-top: 1.5rem;"><strong>以下、受講クラス毎の準備物のご案内です：</strong></p>
+                            <p style="margin-top: 1rem;">初回レッスンから、生徒と講師の全員が集中し、充実した学びができるよう、ご協力をお願いします。</p>
+                            <div class="note">
+                                ※レベル2～5クラスでは、Moodleを利用した毎週の宿題があります。初回レッスンまでに、Moodleのログイン確認を今一度お願いいたします。
+                            </div>
+                            <p style="margin-top: 1rem;"><a href="https://landingpages.maple-school.com/what-to-bring" class="link-button" target="_blank">クラス別持ち物一覧はこちら</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>SL0 / SL1クラスの持ち物を教えてください</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>【SL0 / SL1 共通】</strong></p>
+                            <ul>
+                                <li>横長ABCストリップ（新入生は初回にお渡し）</li>
+                                <li>スティッカーファイル（初日に配布）</li>
+                            </ul>
+                            <p style="margin-top: 1rem;"><strong>＋(SL1受講生のみ)</strong></p>
+                            <ul>
+                                <li>宿題ワークブック (5月の最初のレッスン日に配布)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>SL2クラスの持ち物を教えてください</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>【SL2 / SL3 / SL4 共通】</strong></p>
+                            <ul>
+                                <li>筆記用具（えんぴつ・消しゴム・赤えんぴつ）
+                                    <br>※えんぴつの持ち方矯正グッズの持参も可</li>
+                                <li>英語ノート（四線が書かれたもの）
+                                    <br>※8～10段がおすすめ</li>
+                                <li>スティッカーファイル（初回レッスン日に配布）</li>
+                                <li>ワークシートを綴る青いリングファイル
+                                    <br>（初回レッスン日に配布）</li>
+                            </ul>
+                            <p style="margin-top: 1rem;"><strong>＋(SL2受講生のみ)</strong></p>
+                            <ul>
+                                <li>横長ABCストリップ（4月から入会の方は初回レッスン日に配布）</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Books2 / Books3 / Books4 / Pre3の持ち物を教えてください</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>【Books2 / Books3 / Books4 / Pre3】</strong></p>
+                            <ul>
+                                <li>筆記用具（えんぴつ・消しゴム・赤えんぴつ）
+                                    <br>※えんぴつの持ち方矯正グッズの持参も可</li>
+                                <li>英語ノート（四線が書かれたもの）
+                                    <br>※8～10段がおすすめ</li>
+                                <li>過去受講クラスで使用していた英語ノートの継続利用も可</li>
+                                <li>スティッカーファイル（初回レッスン日に配布）</li>
+                                <li>ワークシートを綴るリングファイル（初回レッスン日に配布）</li>
+                            </ul>
+                            <p style="margin-top: 1rem;">※BOOKSクラス受講生はピンク、PREクラス受講生はグリーン</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Grammar文法クラスの持ち物を教えてください</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>【Grammar文法】</strong></p>
+                            <ul>
+                                <li>筆記用具</li>
+                                <li>英語ノート（四線が書かれたもの。段数は各自で書きやすい幅のものをご用意ください）</li>
+                                <li>教材（初めてのレッスン時に該当レベルのものをお渡しします）</li>
+                            </ul>
+                            <p style="margin-top: 1rem;"><strong>教材について：</strong></p>
+                            <p>個別ペースで進むため、年度途中でも教材が終了次第、次の学年の教材に進みます。その際には教材費がかかります。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>パーソナルサポートクラスの持ち物を教えてください</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>【パーソナルサポートクラス】</strong></p>
+                            <ul>
+                                <li>Moodleの登録IDとパスワード
+                                    <br>（失くさないように、英語ノートの表紙裏などに記載してお持ちください）</li>
+                                <li>筆記用具（えんぴつ・消しゴム）</li>
+                                <li>英語ノート</li>
+                                <li>横長のABCストリップ（レベル2～3のクラス受講の生徒）</li>
+                                <li>Habit Stack（初回レッスン日にネイティブ講師クラスにて新しいものをお渡しします）</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- その他 -->
+            <div class="faq-section" data-category="other">
+                <h2 class="section-title">🎯 その他のご質問</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Habit Stackについて教えてください</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>Habit Stackとは、英語学習の習慣を確立するためにスクール全体で行っているゲームです。</strong></p>
+                            <p style="margin-top: 1rem;"><strong>使い方：</strong></p>
+                            <ul>
+                                <li>「英語習慣積上げ表」を使って管理</li>
+                                <li>家庭での学習時間を毎日記録</li>
+                                <li>1ターム（3か月）に一度ある提出期間中に、教室に持ってきて先生に見せるとくじ引きできます</li>
+                            </ul>
+                            <p style="margin-top: 1rem;"><strong>景品：</strong>スクールの独自通貨「メイプル・ドル」</p>
+                            <ul>
+                                <li>1ドル～100ドルが当たります！</li>
+                            </ul>
+                            <p style="margin-top: 1rem;"><strong>メイプル・ドルの使い道：</strong></p>
+                            <ul>
+                                <li>メイプル・オリジナルグッズ</li>
+                                <li>イベント参加費</li>
+                                <li>プライベートレッスン料金（20分間分）</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>メイプル・ドルの使い方を教えてください</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>メイプル・ドルを貯めると、以下に使用できます：</strong></p>
+                            <ul>
+                                <li>メイプル・オリジナルグッズ</li>
+                                <li>イベント参加費</li>
+                                <li>プライベートレッスン料金（20分間分）</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>メイプル・ドルは、どんなものに交換できますか？</span>
+                        <span class="toggle-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="answer-content">
+                            <p><strong>交換できるアイテムの詳細は、以下でご確認ください：</strong></p>
+                            <ul>
+                                <li>各教室入り口の掲示板</li>
+                                <li>メイプルのインスタグラム</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="no-results" id="noResults">
-            該当する質問が見つかりませんでした。<br>
-            別のキーワードでお試しいただくか、お問い合わせフォームからご連絡ください。
-        </div>
-
-        <footer>
-            <p>&copy; 2024 Maple English School. All rights reserved.</p>
-        </footer>
     </div>
 
-    <script>
-        // FAQ アコーディオン機能
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const item = question.parentElement;
-                const isActive = item.classList.contains('active');
-                
-                // すべてのアイテムを閉じる
-                document.querySelectorAll('.faq-item').forEach(otherItem => {
-                    otherItem.classList.remove('active');
-                });
-                
-                // クリックされたアイテムをトグル
-                if (!isActive) {
-                    item.classList.add('active');
-                }
-            });
-        });
+    <footer>
+        <p>&copy; 2025 Maple English School. All rights reserved.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">何かご不明な点やご質問がある場合は、公式LINEまたはお電話でお気軽にお問い合わせください。</p>
+    </footer>
 
-        // カテゴリーフィルター
-        document.querySelectorAll('.category-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const category = btn.dataset.category;
+    <script>
+        // FAQ展開機能
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        const categoryBtns = document.querySelectorAll('.category-btn');
+        const searchInput = document.getElementById('searchInput');
+        const sections = document.querySelectorAll('.faq-section');
+        const allFaqItems = document.querySelectorAll('.faq-item');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isActive = this.classList.contains('active');
                 
-                // ボタンのアクティブ状態を更新
-                document.querySelectorAll('.category-btn').forEach(b => {
-                    b.classList.remove('active');
-                });
-                btn.classList.add('active');
-                
-                // カテゴリーの表示/非表示
-                document.querySelectorAll('.faq-category').forEach(cat => {
-                    if (category === 'all' || cat.dataset.category === category) {
-                        cat.style.display = 'block';
-                    } else {
-                        cat.style.display = 'none';
+                // 同じセクション内の他のFAQを閉じる
+                const parent = this.closest('.faq-section');
+                parent.querySelectorAll('.faq-question').forEach(q => {
+                    if (q !== this) {
+                        q.classList.remove('active');
+                        q.nextElementSibling.classList.remove('active');
                     }
                 });
                 
-                // 検索をクリア
-                document.getElementById('searchInput').value = '';
-                document.getElementById('noResults').style.display = 'none';
+                // 現在のFAQをトグル
+                this.classList.toggle('active');
+                answer.classList.toggle('active');
+            });
+        });
+
+        // カテゴリーボタン機能
+        categoryBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const category = this.dataset.category;
+                
+                // ボタンのアクティブ状態を更新
+                categoryBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // セクションを表示/非表示
+                sections.forEach(section => {
+                    if (category === 'all' || section.dataset.category === category) {
+                        section.classList.add('active');
+                    } else {
+                        section.classList.remove('active');
+                    }
+                });
+                
+                // 検索入力をクリア
+                searchInput.value = '';
             });
         });
 
         // 検索機能
-        const searchInput = document.getElementById('searchInput');
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase();
-            let hasResults = false;
-            
-            document.querySelectorAll('.faq-item').forEach(item => {
-                const question = item.querySelector('.faq-question').textContent.toLowerCase();
-                const answer = item.querySelector('.faq-answer-content').textContent.toLowerCase();
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            let foundItems = 0;
+
+            allFaqItems.forEach(item => {
+                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
+                const answer = item.querySelector('.answer-content').textContent.toLowerCase();
                 
                 if (question.includes(searchTerm) || answer.includes(searchTerm)) {
                     item.style.display = 'block';
-                    hasResults = true;
+                    foundItems++;
                 } else {
                     item.style.display = 'none';
                 }
             });
-            
-            // カテゴリータイトルの表示制御
-            document.querySelectorAll('.faq-category').forEach(category => {
-                const visibleItems = category.querySelectorAll('.faq-item[style="display: block;"]');
-                if (searchTerm && visibleItems.length === 0) {
-                    category.style.display = 'none';
-                } else {
-                    category.style.display = 'block';
-                }
-            });
-            
-            // 結果なしメッセージ
-            document.getElementById('noResults').style.display = 
-                searchTerm && !hasResults ? 'block' : 'none';
-            
-            // 検索時はカテゴリーフィルターを解除
-            if (searchTerm) {
-                document.querySelectorAll('.category-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
+
+            // 全セクションを表示
+            sections.forEach(section => section.classList.add('active'));
+            categoryBtns.forEach(btn => btn.classList.remove('active'));
+            categoryBtns[0].classList.add('active');
+
+            // 結果がない場合のメッセージ
+            if (foundItems === 0 && searchTerm.length > 0) {
+                console.log('検索結果: 0件');
             }
         });
     </script>
